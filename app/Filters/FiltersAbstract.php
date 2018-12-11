@@ -14,9 +14,10 @@ abstract class FiltersAbstract {
 
     public function filter (Builder $builder) {
         foreach ($this->getFilters() as $filter => $class) {
-            $this->resolveFilter($filter);
+            $a = $this->resolveFilter($filter);
+            dump($a);
         }
-
+        die();
         return $builder;
     }
 
@@ -30,5 +31,11 @@ abstract class FiltersAbstract {
 
     protected function filterFilters ($filters) {
         return array_filter($this->request->only(array_keys($this->filters)));
+    }
+
+    public function add (array $filters) {
+        $this->filters = array_merge($this->filters, $filters);
+
+        return $this;
     }
 }

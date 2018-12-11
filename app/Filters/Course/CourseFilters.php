@@ -8,6 +8,7 @@ use App\Filters\FiltersAbstract;
 class CourseFilters extends FiltersAbstract
 {
     protected $filters = [
-        'access' => AccessFilter::class
+        'access' => AccessFilter::class,
+        'difficulty' => DifficultyFilter::class
     ];
 }
