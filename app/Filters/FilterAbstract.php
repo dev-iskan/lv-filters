@@ -14,4 +14,11 @@ abstract class FilterAbstract {
     protected function resolveFilterValue ($key) {
         return array_get($this->mappings(), $key);
     }
+
+    protected function resolveOrderDirection ($direction) {
+        return array_get([
+            'desc' => 'desc',
+            'asc' => 'asc'
+        ], $direction, 'desc');
+    }
 }
