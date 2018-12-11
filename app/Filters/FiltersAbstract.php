@@ -13,11 +13,9 @@ abstract class FiltersAbstract {
     }
 
     public function filter (Builder $builder) {
-        foreach ($this->getFilters() as $filter => $class) {
-            $a = $this->resolveFilter($filter);
-            dump($a);
+        foreach ($this->getFilters() as $filter => $value) {
+            $this->resolveFilter($filter)->filter($builder, $value);
         }
-        die();
         return $builder;
     }
 
