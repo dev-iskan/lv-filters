@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     public function index(Request $request) {
-        return Course::filter($request, $this->getFilters())->get();
+        return Course::with(['subjects'])->filter($request, $this->getFilters())->get();
     }
 
     public function getFilters () {

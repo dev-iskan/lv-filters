@@ -10,6 +10,7 @@ class CourseFilters extends FiltersAbstract
     protected $filters = [
         'access' => AccessFilter::class,
         'difficulty' => DifficultyFilter::class,
-        'type' => TypeFilter::class
+        'type' => TypeFilter::class,
+        'subject' => SubjectFilter::class
     ];
 }
