@@ -7,7 +7,7 @@ namespace App\Filters\Course\Ordering;
 use App\Filters\FilterAbstract;
 use Illuminate\Database\Eloquent\Builder;
 
-class ViewsFilter extends FilterAbstract
+class ViewsOrder extends FilterAbstract
 {
 
     public function filter(Builder $builder, $value)
