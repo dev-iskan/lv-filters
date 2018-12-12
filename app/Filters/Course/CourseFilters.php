@@ -21,12 +21,18 @@ class CourseFilters extends FiltersAbstract
     ];
 
     public static function mapping () {
-        return [
+        $map = [
             'access' => ['free' => 'Free', 'premium' => 'Premium'],
             'difficulty' => ['beginner' => 'Beginner', 'intermediate' => 'Intermediate', 'advanced' => 'Advanced'],
             'type' => ['snippet' => 'Snippet', 'project' => 'Project', 'theory' => 'Theory'],
             'subject' => \App\Subject::get()->pluck('name', 'slug'),
-            'started' => ['true' => 'Started', 'false' => 'Not started']
+
         ];
+
+        if(auth()->check()) {
+            $map = array_merge($map, ['started' => ['true' => 'Started', 'false' => 'Not started']]);
+        }
+
+        return $map;
     }
 }
