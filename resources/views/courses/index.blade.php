@@ -12,6 +12,7 @@
                     <div class="card-body">
                         @if($courses->count())
                             @each('courses.partials._course', $courses, 'course')
+                            {{$courses->appends(request()->query())->links()}}
                         @else
                             No courses found
                         @endif
