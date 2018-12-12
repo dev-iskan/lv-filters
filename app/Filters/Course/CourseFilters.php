@@ -19,4 +19,14 @@ class CourseFilters extends FiltersAbstract
         'order' => CreateOrder::class,
         'limit' => LimitFilter::class
     ];
+
+    public static function mapping () {
+        return [
+            'access' => ['free' => 'Free', 'premium' => 'Premium'],
+            'difficulty' => ['beginner' => 'Beginner', 'intermediate' => 'Intermediate', 'advanced' => 'Advanced'],
+            'type' => ['snippet' => 'Snippet', 'project' => 'Project', 'theory' => 'Theory'],
+            'subject' => \App\Subject::get()->pluck('name', 'slug'),
+            'started' => ['true' => 'Started', 'false' => 'Not started']
+        ];
+    }
 }
