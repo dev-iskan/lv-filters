@@ -15,7 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/courses', 'CourseController@index')->name('courses.index');
+//Route::get('/courses', 'CourseController@index')->name('courses.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => '/api'], function () {
+    Route::get('/courses', 'Api\CourseController@index');
+});
+
+Route::get('/courses', function () {
+    return view('courses.index');
+});
