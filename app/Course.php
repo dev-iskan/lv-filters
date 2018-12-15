@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $appends = [
-        'started'
+        'started',
+        'formattedAccess',
+        'formattedDifficulty',
+        'formattedType',
+        'formattedStarted'
     ];
 
     protected $hidden = [
@@ -25,11 +29,11 @@ class Course extends Model
     }
 
     public function getFormattedAccessAttribute () {
-        return $this->free ? 'free' : 'premium';
+        return $this->free ? 'Free' : 'Premium';
     }
 
     public function getFormattedStartedAttribute () {
-        return $this->started ? 'started' : 'not started';
+        return $this->started ? 'Started' : 'Not started';
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = []) {
