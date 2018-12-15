@@ -1,5 +1,5 @@
 <template>
-    <ul class="pagination" role="navigation" v-if="meta">
+    <ul class="pagination" role="navigation">
         <li class="page-item" :class="{'disabled' : meta.current_page === 1}" aria-disabled="true">
             <a href="#" class="page-link" @click.prevent="switched(meta.current_page -1)">
             <span>&laquo</span>
@@ -24,11 +24,8 @@
                 if(this.pageIsOutOfBounds()) {
                     return
                 }
-                this.$emit('pagination:switched', page)
                 this.$router.replace({
-                    query: {
-                        page
-                    }
+                    query: Object.assign({}, this.$route.query, {page})
                 })
             },
             pageIsOutOfBounds (page) {

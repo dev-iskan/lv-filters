@@ -7,8 +7,13 @@
             <div class="card">
                 <div class="card-header">Courses</div>
                 <div class="card-body">
-                    <course v-for="course in courses" :key="course.id" :course="course"></course>
-                    <pagination :meta="meta" @pagination:switched="getCourses"></pagination>
+                    <template v-if="courses.length">
+                        <course v-for="course in courses" :key="course.id" :course="course"></course>
+                        <pagination :meta="meta"></pagination>
+                    </template>
+                    <template v-else>
+                        No results found
+                    </template>
                 </div>
             </div>
         </div>
@@ -29,16 +34,25 @@
         mounted () {
             this.getCourses()
         },
+        watch: {
+            '$route.query': {
+                handler (query) {
+                    this.getCourses(1,query)
+                },
+                deep: true
+            }
+        },
         components: {
             Course,
             Pagination,
             Filters
         },
         methods: {
-            getCourses (page = this.$route.query.page) {
+            getCourses (page = this.$route.query.page, query = this.$route.query) {
                 axios.get(`/api/courses`, {
                     params: {
-                        page
+                        page,
+                        ...query
                     }
                 })
                     .then(response => {
